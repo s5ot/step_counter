@@ -1,0 +1,34 @@
+<html>
+  <body>
+    <h1>step counter</h1>
+    <h2>post new steps</h2>
+    <form action="/step_record" method="post">
+      <div>
+        date<input type="text" name="date" value="<%=h @step_record.date.strftime("%Y-%m-%d") %>">
+      </div>
+      <div>
+        steps<input type="text" name="steps" value="<%=h @step_record.steps %>">
+      </div>
+      <div>
+        <input type="submit" value="登録する">
+      </div>
+    </form>
+    <table border="1" style="solid">
+      <th>date</th>
+      <th>steps</th>
+      <th>delete</th>
+      <% @records.each do |record| %>
+        <tr>
+          <td><a href="/step_record/<%=h record.id %>"><%=h record.date.strftime("%Y-%m-%d") %></a></td>
+          <td align="right"><%=h record.steps %></td>
+          <td>
+            <form action="/step_record/<%=h record.id %>" method="post">
+              <input type="submit" value="消す">
+              <input type="hidden" name="_method" value="delete">
+            </form>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </body>
+</html>

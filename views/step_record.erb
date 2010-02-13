@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <% @step_record.errors.each do |e| %>
+      <div style="font-color:#ff0000;front-size=20pt">
+        <%=h e %>
+      </div>
+    <% end %>
+    <form action="/step_record/<%=h @step_record.id %>" method="post">
+      <div>
+        date:<%=h @step_record.date.strftime("%Y-%m-%d") %>
+      </div>
+      <div>
+        steps:<input type="text" name="steps" value="<%=h @step_record.steps %>"><input type="hidden" name="_method" value="put">
+      </div>
+      <div>
+        <input type="submit" value="変更する">
+      </div>
+    </form>
+    <div>
+      <a href="/">もどる</a>
+    </div>
+  </body>
+</html>
